@@ -80,7 +80,7 @@ for j = 1:length(obs_dates)
         z_max(i) = (zmax(tri(i,1))+zmax(tri(i,2))+zmax(tri(i,3)))/3;
         x_c(i) = (x(tri(i,1))+x(tri(i,2))+x(tri(i,3)))/3;
         y_c(i) = (y(tri(i,1))+y(tri(i,2))+y(tri(i,3)))/3;
-        SWC(i) = (sum(SM(i,1:4).*dsoil(1:4))+SM(i,5)*(0.6-sum(dsoil(1:4))))/0.6;
+        SWC(i) = SM(i,1) * 0.5 + SM(i, 2) * 0.5;%(sum(SM(i,1:4).*dsoil(1:4))+SM(i,5)*(0.6-sum(dsoil(1:4))))/0.6;
         %SWC(i) = SM(i,4);
         %SWC(i) =
     end

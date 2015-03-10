@@ -37,7 +37,7 @@ obs_dates = [datenum(2009,4,26,0,0,0)...
     datenum(2009,10,3,0,0,0) datenum(2009,10,9,0,0,0)];
 
 
-fid = fopen(sprintf('%s/Data/CZO/SM/MS_70cm.dat',src));
+fid = fopen(sprintf('%s/Data/CZO/SM/MS_10cm.dat',src));
 data = textscan(fid, '%s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',1,'delimiter','\t');
 fclose(fid);
 
@@ -82,7 +82,7 @@ for j = 1 : length(obs_dates)
     end
     
     for i = 1 : NumEle
-        SWC(i) = (sum(SM(i , 1 : 4) .* dsoil(1 : 4)) + SM(i, 5) * (0.6 - sum(dsoil(1:4)))) / 0.6;
+        SWC(i) = SM(i, 1) * 0.0 + SM(i, 2) * 1.0;%(sum(SM(i , 1 : 4) .* dsoil(1 : 4)) + SM(i, 5) * (0.6 - sum(dsoil(1:4)))) / 0.6;
         plot (nanmean(data{j+1}(within_grid == i)), SWC(i), 'o', 'MarkerSize', 8, 'MarkerFaceColor', 'b');
         hold on;
     end

@@ -38,7 +38,7 @@ data = textscan(fid, '%s %f %f','headerlines',1,'delimiter','\t');
 fclose(fid);
 [site_id, TDR(:,1), TDR(:,2)]= data{:};
 
-fid = fopen(sprintf('%s/Data/CZO/SM/MS_70cm.dat',src));
+fid = fopen(sprintf('%s/Data/CZO/SM/MS_10cm.dat',src));
 data = textscan(fid, '%s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',1,'delimiter','\t');
 fclose(fid);
 
@@ -67,7 +67,7 @@ for j = 1:length(obs_dates)
     pos(2) = ceil(j/3);
     axes('position',[left_margin + (pos(1) - 1) * (width + x_int) 1 - top_margin - pos(2) * (height + y_int) width height]);
     
-    data_interp = load(sprintf('%s/Data/CZO/SM/%s-agrg.dat',src,datestr(obs_dates(j), 'yyyy-mm-dd')))/ 0.7;
+    data_interp = load(sprintf('%s/Data/CZO/SM/10cm/%s-agrg.dat',src,datestr(obs_dates(j), 'yyyy-mm-dd')));
     h = surf(Xgrid,Ygrid,zeros(size(Xgrid)),data_interp,'edgecolor','none'); % interpolated
     hold on;
     for i = 1:length(TDR)
@@ -80,7 +80,7 @@ for j = 1:length(obs_dates)
             xunit = r * cos(th) + x;
             yunit = r * sin(th) + y;
             plot(xunit, yunit, 'k');
-            h = fill (xunit,yunit,data{j+1}(i)/0.7);
+            h = fill (xunit,yunit,data{j+1}(i));
         end
 %         if i == 1
 %             disp(data{j+1}(i));

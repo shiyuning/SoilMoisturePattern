@@ -30,7 +30,7 @@ for j = 1:length(obs_dates)
     [Xgrid,Ygrid]=meshgrid(xlin,ylin);
     projectName = {'shp'};
     [NumEle, NumNode, eleind, nodeind, x, y, zmin, zmax, tri] = read_mesh_func_old(projectName);
-    data = load(sprintf('%s/Data/CZO/SM/%s.dat', src, datestr(obs_dates(j), 'yyyy-mm-dd')));
+    data = load(sprintf('%s/Data/CZO/SM/10cm/%s.dat', src, datestr(obs_dates(j), 'yyyy-mm-dd')));
     SM=griddata(Xgrid(~isnan(data)),Ygrid(~isnan(data)),data(~isnan(data)),Xgrid,Ygrid,'linear');
     SM(~inpolygon(Xgrid,Ygrid,actual_boundary(:,1),actual_boundary(:,2))) = NaN;
     SM_agrg = zeros(1,NumEle);
@@ -102,10 +102,10 @@ for j = 1:length(obs_dates)
     view(0, 90);
     axis off;
     
-    filename =sprintf('%s/Data/CZO/SM/%s-agrg.dat', src, datestr(obs_dates(j), 'yyyy-mm-dd'));
+    filename =sprintf('%s/Data/CZO/SM/10cm/%s-agrg.dat', src, datestr(obs_dates(j), 'yyyy-mm-dd'));
     save(filename,'SMgrid','-ASCII');
     
     
-    filename =sprintf('%s/Data/CZO/SM/%s-agrg-grid.dat', src, datestr(obs_dates(j), 'yyyy-mm-dd'));
+    filename =sprintf('%s/Data/CZO/SM/10cm/%s-agrg-grid.dat', src, datestr(obs_dates(j), 'yyyy-mm-dd'));
     save(filename,'SM_agrg','-ASCII');
 end
