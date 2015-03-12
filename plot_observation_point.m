@@ -69,6 +69,7 @@ for j = 1:length(obs_dates)
     
     data_interp = load(sprintf('%s/Data/CZO/SM/10cm/%s-agrg.dat',src,datestr(obs_dates(j), 'yyyy-mm-dd')));
     h = surf(Xgrid,Ygrid,zeros(size(Xgrid)),data_interp,'edgecolor','none'); % interpolated
+    caxis([0.1 0.25]);
     hold on;
     for i = 1:length(TDR)
         
@@ -81,6 +82,7 @@ for j = 1:length(obs_dates)
             yunit = r * sin(th) + y;
             plot(xunit, yunit, 'k');
             h = fill (xunit,yunit,data{j+1}(i));
+            caxis([0.1 0.25]);
         end
 %         if i == 1
 %             disp(data{j+1}(i));
@@ -132,10 +134,10 @@ axes('Position',get(C,'Position'));
 axis off;
 
 text(-0.1,0,'$<=$0.10','HorizontalAlignment','Right','VerticalAlignment','Middle','Interpreter','latex','FontSize',fsize-5);
-text(-0.1,1/3,'0.15','HorizontalAlignment','Right','VerticalAlignment','Middle','Interpreter','latex','FontSize',fsize-5);
-text(-0.1,2/3,'0.20','HorizontalAlignment','Right','VerticalAlignment','Middle','Interpreter','latex','FontSize',fsize-5);
+text(-0.1,1/2,'0.20','HorizontalAlignment','Right','VerticalAlignment','Middle','Interpreter','latex','FontSize',fsize-5);
+%text(-0.1,2/3,'0.30','HorizontalAlignment','Right','VerticalAlignment','Middle','Interpreter','latex','FontSize',fsize-5);
 %text(-0.1,3/3,'0.20','HorizontalAlignment','Right','VerticalAlignment','Middle','Interpreter','latex','FontSize',fsize-5);
-text(-0.1,4/4,'$>=$0.25','HorizontalAlignment','Right','VerticalAlignment','Middle','Interpreter','latex','FontSize',fsize-5);
+text(-0.1,4/4,'$>=$0.30','HorizontalAlignment','Right','VerticalAlignment','Middle','Interpreter','latex','FontSize',fsize-5);
 text(-3.5,0.5,'Soil water content (m$^3$ m$^{-3}$)','HorizontalAlignment','center','VerticalAlignment','Middle','Rotation',90,'Interpreter','latex','FontSize',fsize);
 
 %     CB=colorbar('Location','East','Position',[0.7 0.2 0.02 0.6],'FontSize',fsize-5);
